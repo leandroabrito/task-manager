@@ -8,10 +8,17 @@ yargs.command({
       describe: 'task title',
       demandOption: true,
       type: 'string'
+    },
+    description: {
+      describe: 'task description',
+      demandOption: true,
+      type: 'string'
     }
   },
   handler: function(argv){
-    console.log(`adding task -> ${argv.title}`);
+    console.log('adding the following task:');
+    console.log(`title -> ${argv.title}`);
+    console.log(`decription -> ${argv.description}`);
   }
 });
 
