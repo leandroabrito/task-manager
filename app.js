@@ -3,8 +3,15 @@ const yargs = require('yargs');
 yargs.command({
   command: 'add',
   describe: 'add a task',
-  handler: function(){
-    console.log('adding a task');
+  builder: {
+    title: {
+      describe: 'task title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function(argv){
+    console.log(`adding task -> ${argv.title}`);
   }
 });
 
