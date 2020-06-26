@@ -2,10 +2,22 @@ const fs = require('fs');
 
 const addTask = function(title, description){
   const tasks = loadAllTasks()
-  console.log(tasks)
+
+  const newTask = {
+    title,
+    description
+  }
+
+  tasks.push(newTask);
+
+  saveTask(tasks);
 }
 
 
+const saveTask = function(task){
+  const taskJSON = JSON.stringify(task);
+  fs.writeFileSync('tasks.json', taskJSON);
+}
 
 
 const loadAllTasks = function(){
