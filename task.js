@@ -3,14 +3,21 @@ const fs = require('fs');
 const addTask = function(title, description){
   const tasks = loadAllTasks()
 
-  const newTask = {
-    title,
-    description
+  const dupes = tasks.find(function(task) {
+    return task.title === title
+  })
+
+
+  if(!dupes){
+    const newTask = {
+      title,
+      description
+    }
+    tasks.push(newTask);
+    saveTask(tasks);
+  }else {
+    console.log('duplicated task');
   }
-
-  tasks.push(newTask);
-
-  saveTask(tasks);
 }
 
 
