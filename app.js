@@ -27,8 +27,15 @@ yargs.command({
 yargs.command({
   command: 'remove',
   describe: 'remove a task',
-  handler: function(){
-    console.log('removing a task');
+  builder: {
+    title: {
+      describe: 'task to be removed',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function(argv){
+    task.removeTask(argv.title);
   }
 });
 

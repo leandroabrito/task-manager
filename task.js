@@ -15,17 +15,25 @@ const addTask = function(title, description){
     }
     tasks.push(newTask);
     saveTask(tasks);
+    console.log(`task ${title} has been added`);
   }else {
     console.log('duplicated task');
   }
 }
 
+const removeTask = function(title) {
+  const tasks = loadAllTasks();
+  const tasksToKeep = tasks.filter(function(task){
+    task.title !== title
+  });
+  saveTask(tasksToKeep);
+  console.log(`task ${title} has been removed`);
+}
 
 const saveTask = function(task){
   const taskJSON = JSON.stringify(task);
   fs.writeFileSync('tasks.json', taskJSON);
 }
-
 
 const loadAllTasks = function(){
   try {
@@ -38,5 +46,6 @@ const loadAllTasks = function(){
 
 
 module.exports = {
-  addTask
+  addTask,
+  removeTask,
 }
