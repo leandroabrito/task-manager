@@ -24,7 +24,7 @@ const addTask = function(title, description){
 const removeTask = function(title) {
   const tasks = loadAllTasks();
   const tasksToKeep = tasks.filter(function(task){
-    task.title !== title
+    return task.title !== title
   });
   saveTask(tasksToKeep);
   console.log(`task ${title} has been removed`);
