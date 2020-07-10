@@ -48,4 +48,5 @@ const loadAllTasks = function(){
 module.exports = {
   addTask,
   removeTask,
+  loadAllTasks,
 }

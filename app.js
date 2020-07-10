@@ -44,6 +44,9 @@ yargs.command({
   describe: 'list tasks',
   handler: function(){
     console.log('listing tasks');
+    const allTasks = task.loadAllTasks();
+    const allTasksJSON = JSON.stringify(allTasks, null, 2);
+    console.log(allTasksJSON);
   }
 });
 
