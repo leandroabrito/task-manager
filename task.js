@@ -30,6 +30,28 @@ const removeTask = function(title) {
   console.log(`task ${title} has been removed`);
 }
 
+const findTask = function(title) {
+  const tasks = loadAllTasks();
+  const taskFound = tasks.find(function(task){
+    return task.title === title;
+  });
+  if (taskFound !== undefined) {
+    return taskFound;
+  } else {
+    return {};
+  }
+}
+
+// const updateTask = function(title) {
+//   const tasks = loadAllTasks();
+//   tasks.map(function(task) {
+//     if(task.title === title) {
+//       task.title = title;
+//     }
+//   });
+//   saveTask(tasks);
+// }
+
 const saveTask = function(task){
   const taskJSON = JSON.stringify(task);
   fs.writeFileSync('tasks.json', taskJSON);
@@ -49,4 +71,6 @@ module.exports = {
   addTask,
   removeTask,
   loadAllTasks,
+  findTask,
+  // updateTask,
 }

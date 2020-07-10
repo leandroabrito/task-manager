@@ -53,11 +53,37 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'read a task',
-  handler: function(){
+  builder: {
+    title: {
+      describe: 'task to be read',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler: function(argv){
     console.log('reading a task');
+    const taskFound = task.findTask(argv.title);
+    const taskFoundJSON = JSON.stringify(taskFound, null, 2);
+    console.log(taskFoundJSON);
   }
 });
 
+// yargs.command({
+//   command: 'update',
+//   describe: 'update a task',
+//   builder: {
+//     title: {
+//       describe: 'task to be updated',
+//       demandOption: true,
+//       type: 'string'
+//     }
+//   },
+//   handler: function(argv) {
+//     console.log('updating task');
+//     task.updateTask(argv.title);
+
+//   }
+// });
 
 // console.log(yargs.argv);
 yargs.parse();
